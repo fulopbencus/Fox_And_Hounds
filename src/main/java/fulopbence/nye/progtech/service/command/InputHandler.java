@@ -1,5 +1,6 @@
 package fulopbence.nye.progtech.service.command;
 
+import fulopbence.nye.progtech.ui.PrintWrapper;
 import java.util.List;
 
 /**
@@ -8,6 +9,8 @@ import java.util.List;
 public class InputHandler {
 
     private List<Command> commandList;
+
+    private PrintWrapper printWrapper;
 
     public InputHandler(List<Command> commandList) {
         this.commandList = commandList;
@@ -20,10 +23,9 @@ public class InputHandler {
         for (Command command : commandList) {
             if (command.canProcess(input)) {
                 command.process(input);
+                break;
             }
         }
-
-
     }
 
 }

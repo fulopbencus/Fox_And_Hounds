@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * As the name states it's a command used for exiting the game.
+ * Command used for exiting the game.
  */
 public class ExitCommand implements Command {
 
@@ -27,7 +27,7 @@ public class ExitCommand implements Command {
 
     @Override
     public void process(String input) {
-        LOGGER.info("Exit flag will be true");
+        LOGGER.info("Exiting the game.");
         gameState.setUserWantsToExit(true);
     }
 }

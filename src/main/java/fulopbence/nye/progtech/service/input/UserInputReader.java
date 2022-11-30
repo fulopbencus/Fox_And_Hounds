@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
- * Conponent that reads the player's input.
+ * Component that reads the player's input.
  */
 public class UserInputReader {
 
@@ -20,7 +20,7 @@ public class UserInputReader {
     }
 
     /**
-     * Reads the user input and returns it as a string, also able to log errors.
+     * Reads the user input and returns it as a string.
      */
     public String readInput() {
         String input = null;
