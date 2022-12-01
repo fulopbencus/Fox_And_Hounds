@@ -63,12 +63,18 @@ public class FoxUpRightCommand implements Command {
 
 
         LOGGER.info("Moving the fox to: rowIndex = {}, columnIndex = {}, number = 4", rowIndex, columnIndex, 4);
+        try {
+            MapVo newMap = foxputPerformer.perform(gameState.getMapVo(), rowIndex, columnIndex, 0);
 
+            gameState.setMapVo(newMap);
+            mapPrinter.printMap(newMap);
+        } catch (PutException e) {
+            System.out.println("Something went wrong while executing put operation");
+        }
         try {
             MapVo newMap = foxputPerformer.perform(gameState.getMapVo(), rowIndex-1, columnIndex+1, 4);
 
             gameState.setMapVo(newMap);
-
             mapPrinter.printMap(newMap);
         } catch (PutException e) {
             System.out.println("Something went wrong while executing put operation");
