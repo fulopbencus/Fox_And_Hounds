@@ -46,15 +46,22 @@ public class FoxUpRightCommand implements Command {
 
     @Override
     public void process(String input) {
+        int rowIndex = 0; //Get the fox's position using a for loop which examines the maps values
+        int columnIndex = 0;
         int[][] oldMap = mapVo.getValues();
-        int rowIndex = ; //Get the fox's position using a for loop which examines the maps values
-        int columnIndex = ;
-        int number = 4;
+        for(int i = 0;i<9;i++){
+            for(int j = 0;j<9;j++){
+                if(oldMap[i][j]==4) {
+                    rowIndex = j;
+                    columnIndex = i;
+                }
+            }
+        }
 
-        LOGGER.info("Moving the fox to: {}, columnIndex = {}, number = {}", rowIndex, columnIndex, number);
+        LOGGER.info("Moving the fox to: {}, columnIndex = {}, number = 4", rowIndex, columnIndex, 4);
 
         try {
-            MapVo newMap = foxputPerformer.perform(gameState.getMapVo(), rowIndex, columnIndex, number);
+            MapVo newMap = foxputPerformer.perform(gameState.getMapVo(), rowIndex, columnIndex, 4);
             gameState.setMapVo(newMap);
 
             mapPrinter.printMap(newMap);
