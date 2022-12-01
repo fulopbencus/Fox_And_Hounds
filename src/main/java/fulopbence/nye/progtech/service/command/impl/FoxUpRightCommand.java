@@ -11,8 +11,6 @@ import fulopbence.nye.progtech.service.command.Command;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-
 /**
  * Puts the fox to up and right by one square.
  */
@@ -26,17 +24,14 @@ public class FoxUpRightCommand implements Command {
     private  FoxPutPerformer foxputPerformer;
     private  MapPrinter mapPrinter;
     private  PrintWrapper printWrapper;
-
     private MapVo mapVo;
-    private MapValidator mapValidator;
 
-    public FoxUpRightCommand(GameState gameState, FoxPutPerformer foxputPerformer, MapValidator mapValidator,
-                      MapPrinter mapPrinter, PrintWrapper printWrapper) {
+    public FoxUpRightCommand(GameState gameState,FoxPutPerformer foxputPerformer,MapPrinter mapPrinter,PrintWrapper printWrapper,MapVo mapVo) {
         this.gameState = gameState;
         this.foxputPerformer = foxputPerformer;
-        this.mapValidator = mapValidator;
         this.mapPrinter = mapPrinter;
         this.printWrapper = printWrapper;
+        this.mapVo = mapVo;
     }
 
     @Override
@@ -46,22 +41,32 @@ public class FoxUpRightCommand implements Command {
 
     @Override
     public void process(String input) {
+        int numberOfRows = mapVo.getNumberOfRows();
+        int numberOfColumns = mapVo.getNumberOfColumns();
         int rowIndex = 0; //Get the fox's position using a for loop which examines the maps values
         int columnIndex = 0;
         int[][] oldMap = mapVo.getValues();
-        for(int i = 0;i<9;i++){
-            for(int j = 0;j<9;j++){
-                if(oldMap[i][j]==4) {
-                    rowIndex = j;
-                    columnIndex = i;
+        try {
+            for (int i = 0; i < numberOfRows; i++) {
+                System.out.println(i+"row");
+                for (int j = 0; j < numberOfColumns; j++) {
+                    System.out.println(j+"col");
+                    if (oldMap[i][j] == 4) {
+                        rowIndex = i;
+                        columnIndex = j;
+                    }
                 }
             }
+        }catch(NullPointerException e){
+            System.out.println("NullPointer");
         }
 
-        LOGGER.info("Moving the fox to: {}, columnIndex = {}, number = 4", rowIndex, columnIndex, 4);
+
+        LOGGER.info("Moving the fox to: rowIndex = {}, columnIndex = {}, number = 4", rowIndex, columnIndex, 4);
 
         try {
-            MapVo newMap = foxputPerformer.perform(gameState.getMapVo(), rowIndex, columnIndex, 4);
+            MapVo newMap = foxputPerformer.perform(gameState.getMapVo(), rowIndex-1, columnIndex+1, 4);
+
             gameState.setMapVo(newMap);
 
             mapPrinter.printMap(newMap);
