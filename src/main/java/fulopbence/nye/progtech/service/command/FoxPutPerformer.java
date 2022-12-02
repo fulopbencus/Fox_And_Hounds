@@ -12,6 +12,9 @@ public class FoxPutPerformer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FoxPutPerformer.class);
 
+    /**
+     * Returns the new map.
+     */
     public MapVo perform(MapVo mapVo, int rowIndex, int columnIndex, int number) throws PutException {
 
         int[][] map = mapVo.getValues();

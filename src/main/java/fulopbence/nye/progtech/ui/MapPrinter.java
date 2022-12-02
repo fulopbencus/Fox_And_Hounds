@@ -1,13 +1,17 @@
 package fulopbence.nye.progtech.ui;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import fulopbence.nye.progtech.model.MapVo;
-import fulopbence.nye.progtech.ui.MapUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import fulopbence.nye.progtech.model.MapVo;
+import fulopbence.nye.progtech.ui.MapUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Declaring MapPrinter.
+ */
 public class MapPrinter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MapPrinter.class);

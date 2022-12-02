@@ -5,6 +5,7 @@ import java.util.Objects;
 /**
  * The game's map.
  */
+
 public class MapVo {
 
     private final int numberOfRows;

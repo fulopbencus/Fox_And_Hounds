@@ -1,9 +1,9 @@
 package fulopbence.nye.progtech.service.map.parser;
 
+import java.util.List;
+
 import fulopbence.nye.progtech.model.MapVo;
 import fulopbence.nye.progtech.service.exception.MapReadException;
-
-import java.util.List;
 
 /**
  * Parses the copy of a raw map into a MapVo object.

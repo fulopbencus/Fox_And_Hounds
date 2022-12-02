@@ -1,12 +1,12 @@
 package fulopbence.nye.progtech.service.map.validation.reader.impl;
 
-import fulopbence.nye.progtech.service.exception.MapReadException;
-import fulopbence.nye.progtech.service.map.validation.reader.MapReader;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import fulopbence.nye.progtech.service.exception.MapReadException;
+import fulopbence.nye.progtech.service.map.validation.reader.MapReader;
 
 /**
  * It reads the raw representation of a map.

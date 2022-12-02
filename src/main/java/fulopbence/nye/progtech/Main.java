@@ -1,14 +1,19 @@
 package fulopbence.nye.progtech;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
+
 import fulopbence.nye.progtech.model.GameState;
 import fulopbence.nye.progtech.model.MapVo;
 import fulopbence.nye.progtech.service.command.Command;
 import fulopbence.nye.progtech.service.command.FoxPutPerformer;
 import fulopbence.nye.progtech.service.command.InputHandler;
-import fulopbence.nye.progtech.service.command.impl.ExitCommand;
 import fulopbence.nye.progtech.service.command.impl.DefaultCommand;
+import fulopbence.nye.progtech.service.command.impl.ExitCommand;
 import fulopbence.nye.progtech.service.command.impl.FoxUpRightCommand;
-import fulopbence.nye.progtech.service.command.FoxPutPerformer;
 import fulopbence.nye.progtech.service.command.impl.PrintCommand;
 import fulopbence.nye.progtech.service.game.GameController;
 import fulopbence.nye.progtech.service.game.GameStepPerformer;
@@ -17,19 +22,17 @@ import fulopbence.nye.progtech.service.map.MapReaderFacade;
 import fulopbence.nye.progtech.service.map.parser.MapParser;
 import fulopbence.nye.progtech.service.map.validation.reader.MapReader;
 import fulopbence.nye.progtech.service.map.validation.reader.impl.BufferedReaderMapReader;
-import fulopbence.nye.progtech.ui.MapUtil;
 import fulopbence.nye.progtech.ui.MapPrinter;
+import fulopbence.nye.progtech.ui.MapUtil;
 import fulopbence.nye.progtech.ui.PrintWrapper;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.List;
 
 /**
- * Entry.
+ * Main class. Where it's all connected.
  */
 public class Main {
+    /**
+     * Entry point.
+     */
     public static void main(String[] args) {
 
         InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("map/staticmap.txt");
@@ -56,7 +59,7 @@ public class Main {
         List<Command> commandList = Arrays.asList(
                 new PrintCommand(mapPrinter, gameState),
                 new ExitCommand(gameState),
-                new FoxUpRightCommand(gameState,foxputPerformer,mapPrinter,printWrapper,mapVo),
+                new FoxUpRightCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo),
                 new DefaultCommand(printWrapper)
         );
 

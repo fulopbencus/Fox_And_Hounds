@@ -1,13 +1,12 @@
 package fulopbence.nye.progtech.service.command.impl;
 
-import fulopbence.nye.progtech.service.exception.PutException;
-import fulopbence.nye.progtech.ui.PrintWrapper;
-import fulopbence.nye.progtech.model.MapVo;
-import fulopbence.nye.progtech.ui.MapPrinter;
-import fulopbence.nye.progtech.service.command.FoxPutPerformer;
-import fulopbence.nye.progtech.service.map.validation.MapValidator;
 import fulopbence.nye.progtech.model.GameState;
+import fulopbence.nye.progtech.model.MapVo;
 import fulopbence.nye.progtech.service.command.Command;
+import fulopbence.nye.progtech.service.command.FoxPutPerformer;
+import fulopbence.nye.progtech.service.exception.PutException;
+import fulopbence.nye.progtech.ui.MapPrinter;
+import fulopbence.nye.progtech.ui.PrintWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +25,8 @@ public class FoxUpRightCommand implements Command {
     private  PrintWrapper printWrapper;
     private MapVo mapVo;
 
-    public FoxUpRightCommand(GameState gameState,FoxPutPerformer foxputPerformer,MapPrinter mapPrinter,PrintWrapper printWrapper,MapVo mapVo) {
+    public FoxUpRightCommand(GameState gameState, FoxPutPerformer
+            foxputPerformer, MapPrinter mapPrinter, PrintWrapper printWrapper, MapVo mapVo) {
         this.gameState = gameState;
         this.foxputPerformer = foxputPerformer;
         this.mapPrinter = mapPrinter;
@@ -48,31 +48,28 @@ public class FoxUpRightCommand implements Command {
         int[][] oldMap = mapVo.getValues();
         try {
             for (int i = 0; i < numberOfRows; i++) {
-                System.out.println(i+"row");
                 for (int j = 0; j < numberOfColumns; j++) {
-                    System.out.println(j+"col");
                     if (oldMap[i][j] == 4) {
                         rowIndex = i;
                         columnIndex = j;
                     }
                 }
             }
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("NullPointer");
         }
 
 
-        LOGGER.info("Moving the fox to: rowIndex = {}, columnIndex = {}, number = 4", rowIndex, columnIndex, 4);
+        LOGGER.info("Moving the fox to: rowIndex = {}, columnIndex = {}, number = 4", rowIndex - 1, columnIndex + 1, 4);
         try {
             MapVo newMap = foxputPerformer.perform(gameState.getMapVo(), rowIndex, columnIndex, 0);
 
             gameState.setMapVo(newMap);
-            mapPrinter.printMap(newMap);
         } catch (PutException e) {
             System.out.println("Something went wrong while executing put operation");
         }
         try {
-            MapVo newMap = foxputPerformer.perform(gameState.getMapVo(), rowIndex-1, columnIndex+1, 4);
+            MapVo newMap = foxputPerformer.perform(gameState.getMapVo(), rowIndex - 1, columnIndex + 1, 4);
 
             gameState.setMapVo(newMap);
             mapPrinter.printMap(newMap);

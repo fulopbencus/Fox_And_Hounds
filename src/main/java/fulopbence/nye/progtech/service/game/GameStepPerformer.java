@@ -21,6 +21,9 @@ public class GameStepPerformer {
 
     private InputHandler inputHandler;
 
+    /**
+     * Performs the next step.
+     */
     public void performGameStep() {
         String input = userInputReader.readInput();
         LOGGER.info("Read user input = '{}'", input);

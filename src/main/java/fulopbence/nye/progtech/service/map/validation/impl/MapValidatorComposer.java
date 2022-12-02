@@ -1,10 +1,10 @@
 package fulopbence.nye.progtech.service.map.validation.impl;
 
+import java.util.List;
+
 import fulopbence.nye.progtech.model.MapVo;
 import fulopbence.nye.progtech.service.exception.MapValidationException;
 import fulopbence.nye.progtech.service.map.validation.MapValidator;
-
-import java.util.List;
 
 /**
  * Composes a validation list from different validators.

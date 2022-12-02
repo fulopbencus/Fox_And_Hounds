@@ -1,5 +1,7 @@
 package fulopbence.nye.progtech.service.map;
 
+import java.util.List;
+
 import fulopbence.nye.progtech.model.MapVo;
 import fulopbence.nye.progtech.service.exception.MapParseException;
 import fulopbence.nye.progtech.service.exception.MapReadException;
@@ -8,8 +10,6 @@ import fulopbence.nye.progtech.service.map.parser.MapParser;
 import fulopbence.nye.progtech.service.map.validation.reader.MapReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 /**
  * Provides a simplified "interface" to read maps easier.

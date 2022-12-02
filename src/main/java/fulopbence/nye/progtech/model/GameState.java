@@ -4,6 +4,7 @@ import java.util.Objects;
 /**
  * Current state of the game.
  */
+
 public class GameState {
 
     private MapVo mapVo;

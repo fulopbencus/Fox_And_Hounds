@@ -1,7 +1,8 @@
 package fulopbence.nye.progtech.service.command;
 
-import fulopbence.nye.progtech.ui.PrintWrapper;
 import java.util.List;
+
+import fulopbence.nye.progtech.ui.PrintWrapper;
 
 /**
  * Component that handles the player's inputs.
