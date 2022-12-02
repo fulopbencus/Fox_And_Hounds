@@ -3,9 +3,12 @@ package fulopbence.nye.progtech;
 import fulopbence.nye.progtech.model.GameState;
 import fulopbence.nye.progtech.model.MapVo;
 import fulopbence.nye.progtech.service.command.Command;
+import fulopbence.nye.progtech.service.command.FoxPutPerformer;
 import fulopbence.nye.progtech.service.command.InputHandler;
 import fulopbence.nye.progtech.service.command.impl.ExitCommand;
 import fulopbence.nye.progtech.service.command.impl.DefaultCommand;
+import fulopbence.nye.progtech.service.command.impl.FoxUpRightCommand;
+import fulopbence.nye.progtech.service.command.FoxPutPerformer;
 import fulopbence.nye.progtech.service.command.impl.PrintCommand;
 import fulopbence.nye.progtech.service.game.GameController;
 import fulopbence.nye.progtech.service.game.GameStepPerformer;
@@ -40,6 +43,8 @@ public class Main {
         MapReaderFacade mapReaderFacade = new MapReaderFacade(mapReader, mapParser);
         MapVo mapVo = mapReaderFacade.readMap();
 
+        FoxPutPerformer foxputPerformer = new FoxPutPerformer();
+
         GameState gameState = new GameState(mapVo, false);
 
         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
@@ -51,6 +56,7 @@ public class Main {
         List<Command> commandList = Arrays.asList(
                 new PrintCommand(mapPrinter, gameState),
                 new ExitCommand(gameState),
+                new FoxUpRightCommand(gameState,foxputPerformer,mapPrinter,printWrapper,mapVo),
                 new DefaultCommand(printWrapper)
         );
 

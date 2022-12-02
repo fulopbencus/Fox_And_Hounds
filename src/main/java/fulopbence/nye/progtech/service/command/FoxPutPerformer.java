@@ -13,8 +13,6 @@ public class FoxPutPerformer {
     private static final Logger LOGGER = LoggerFactory.getLogger(FoxPutPerformer.class);
 
     public MapVo perform(MapVo mapVo, int rowIndex, int columnIndex, int number) throws PutException {
-        LOGGER.info("Moving the fox to: {}, rowIndex = {}, columnIndex = {}, number = 4",
-                mapVo, rowIndex, columnIndex);
 
         int[][] map = mapVo.getValues();
 
