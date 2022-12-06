@@ -16,10 +16,10 @@ import java.sql.SQLOutput;
  * Puts the fox to up and right by one square.
  */
 
-public class FoxUpRightCommand implements Command {
+public class FoxUpLeftCommand implements Command {
     private static final Logger LOGGER = LoggerFactory.getLogger(FoxUpRightCommand.class);
 
-    private static final String PUT_COMMAND_UR = "foxur";
+    private static final String PUT_COMMAND_UL = "foxul";
 
     private  GameState gameState;
     private  FoxPutPerformer foxputPerformer;
@@ -27,7 +27,7 @@ public class FoxUpRightCommand implements Command {
     private  PrintWrapper printWrapper;
     private MapVo mapVo;
 
-    public FoxUpRightCommand(GameState gameState, FoxPutPerformer
+    public FoxUpLeftCommand(GameState gameState, FoxPutPerformer
             foxputPerformer, MapPrinter mapPrinter, PrintWrapper printWrapper, MapVo mapVo) {
         this.gameState = gameState;
         this.foxputPerformer = foxputPerformer;
@@ -38,7 +38,7 @@ public class FoxUpRightCommand implements Command {
 
     @Override
     public boolean canProcess(String input) {
-        return PUT_COMMAND_UR.equals(input);
+        return PUT_COMMAND_UL.equals(input);
     }
 
     @Override
@@ -64,8 +64,8 @@ public class FoxUpRightCommand implements Command {
         }
 
 
-        LOGGER.info("Moving the fox to: rowIndex = {}, columnIndex = {}, number = 4", rowIndex - 1, columnIndex + 1, 4);
-        if (rowIndex - 1 < 0 || rowIndex - 1 >= mapVo.getNumberOfRows() || columnIndex + 1 < 0 || columnIndex + 1 >= mapVo.getNumberOfColumns()) {
+        LOGGER.info("Moving the fox to: rowIndex = {}, columnIndex = {}, number = 4", rowIndex - 1, columnIndex - 1, 4);
+        if (rowIndex - 1 < 0 || rowIndex - 1 >= mapVo.getNumberOfRows() || columnIndex - 1 < 0 || columnIndex - 1 >= mapVo.getNumberOfColumns()) {
             LOGGER.info("Moving failed");
             System.out.println("Don't try to move out of the map!");
         } else {
@@ -77,7 +77,7 @@ public class FoxUpRightCommand implements Command {
                 System.out.println("Something went wrong while executing put operation");
             }
             try {
-                MapVo newMap = foxputPerformer.perform(gameState.getMapVo(), rowIndex - 1, columnIndex + 1, 4);
+                MapVo newMap = foxputPerformer.perform(gameState.getMapVo(), rowIndex - 1, columnIndex - 1, 4);
 
                 gameState.setMapVo(newMap);
                 mapPrinter.printMap(newMap);

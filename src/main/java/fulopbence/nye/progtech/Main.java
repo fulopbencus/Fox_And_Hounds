@@ -14,6 +14,7 @@ import fulopbence.nye.progtech.service.command.InputHandler;
 import fulopbence.nye.progtech.service.command.impl.DefaultCommand;
 import fulopbence.nye.progtech.service.command.impl.ExitCommand;
 import fulopbence.nye.progtech.service.command.impl.FoxUpRightCommand;
+import fulopbence.nye.progtech.service.command.impl.FoxUpLeftCommand;
 import fulopbence.nye.progtech.service.command.impl.PrintCommand;
 import fulopbence.nye.progtech.service.game.GameController;
 import fulopbence.nye.progtech.service.game.GameStepPerformer;
@@ -60,6 +61,7 @@ public class Main {
                 new PrintCommand(mapPrinter, gameState),
                 new ExitCommand(gameState),
                 new FoxUpRightCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo),
+                new FoxUpLeftCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo),
                 new DefaultCommand(printWrapper)
         );
 
