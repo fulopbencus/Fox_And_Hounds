@@ -43,13 +43,15 @@ public class MapUtil {
      * Checks if the fox is at the top row.
      */
     public boolean isMapCompleted(MapVo mapVo) {
-        boolean result = true;
+        boolean result = false;
 
         int[][] map = mapVo.getValues();
         for (int i = 0; i < mapVo.getNumberOfColumns(); i++) {
-            if (map[0][i] != mapVo.getFoxMapValue()) {
-                result = false;
-                break;
+            if (map[0][i] == mapVo.getFoxMapValue()) {
+                result = true;
+                System.out.println("       __---˝˝˝˝˝˝˝˝˝˝---__");
+                System.out.println("       ||  THE FOX WINS! ||");
+                System.out.println("       ˝˝---__________---˝˝");
             }
         }
 
