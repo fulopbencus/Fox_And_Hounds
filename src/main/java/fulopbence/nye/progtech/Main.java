@@ -11,11 +11,7 @@ import fulopbence.nye.progtech.model.MapVo;
 import fulopbence.nye.progtech.service.command.Command;
 import fulopbence.nye.progtech.service.command.FoxPutPerformer;
 import fulopbence.nye.progtech.service.command.InputHandler;
-import fulopbence.nye.progtech.service.command.impl.DefaultCommand;
-import fulopbence.nye.progtech.service.command.impl.ExitCommand;
-import fulopbence.nye.progtech.service.command.impl.FoxUpRightCommand;
-import fulopbence.nye.progtech.service.command.impl.FoxUpLeftCommand;
-import fulopbence.nye.progtech.service.command.impl.PrintCommand;
+import fulopbence.nye.progtech.service.command.impl.*;
 import fulopbence.nye.progtech.service.game.GameController;
 import fulopbence.nye.progtech.service.game.GameStepPerformer;
 import fulopbence.nye.progtech.service.input.UserInputReader;
@@ -60,6 +56,8 @@ public class Main {
         List<Command> commandList = Arrays.asList(
                 new PrintCommand(mapPrinter, gameState),
                 new ExitCommand(gameState),
+                new FoxDownLeftCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo),
+                new FoxDownRightCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo),
                 new FoxUpRightCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo),
                 new FoxUpLeftCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo),
                 new DefaultCommand(printWrapper)
