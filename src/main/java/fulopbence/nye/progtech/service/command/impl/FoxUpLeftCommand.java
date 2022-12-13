@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.SQLOutput;
 
 /**
- * Puts the fox to up and right by one square.
+ * Puts the fox to up and left by one square.
  */
 
 public class FoxUpLeftCommand implements Command {
@@ -58,7 +58,6 @@ public class FoxUpLeftCommand implements Command {
                     }
                 }
             }
-            System.out.println(rowIndex+","+columnIndex);
         } catch (NullPointerException e) {
             System.out.println("NullPointer");
         }
@@ -66,9 +65,13 @@ public class FoxUpLeftCommand implements Command {
 
         LOGGER.info("Moving the fox to: rowIndex = {}, columnIndex = {}, number = 4", rowIndex - 1, columnIndex - 1, 4);
         if (rowIndex - 1 < 0 || rowIndex - 1 >= mapVo.getNumberOfRows() || columnIndex - 1 < 0 || columnIndex - 1 >= mapVo.getNumberOfColumns()) {
-            LOGGER.info("Moving failed");
+            LOGGER.info("Moving failed on map bounds.");
             System.out.println("Don't try to move out of the map!");
-        } else {
+        }else if(oldMap[rowIndex - 1][columnIndex - 1] != 0){
+            LOGGER.info("Moving failed on hound position.");
+            System.out.println("Don't try to move onto the top of the Hound!");
+        }
+         else {
             try {
                 MapVo newMap = foxputPerformer.perform(gameState.getMapVo(), rowIndex, columnIndex, 0);
 
