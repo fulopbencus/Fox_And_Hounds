@@ -21,10 +21,10 @@ public class FoxUpRightCommand implements Command {
 
     private static final String PUT_COMMAND_UR = "foxur";
 
-    private  GameState gameState;
-    private  FoxPutPerformer foxputPerformer;
-    private  MapPrinter mapPrinter;
-    private  PrintWrapper printWrapper;
+    private GameState gameState;
+    private FoxPutPerformer foxputPerformer;
+    private MapPrinter mapPrinter;
+    private PrintWrapper printWrapper;
     private MapVo mapVo;
     private HoundMove houndMove;
 
@@ -69,11 +69,10 @@ public class FoxUpRightCommand implements Command {
         if (rowIndex - 1 < 0 || rowIndex - 1 >= mapVo.getNumberOfRows() || columnIndex + 1 < 0 || columnIndex + 1 >= mapVo.getNumberOfColumns()) {
             LOGGER.info("Moving failed on map bounds.");
             System.out.println("Don't try to move out of the map!");
-        }else if(oldMap[rowIndex - 1][columnIndex + 1] != 0){
+        } else if (oldMap[rowIndex - 1][columnIndex + 1] != 0) {
             LOGGER.info("Moving failed on hound position.");
             System.out.println("Don't try to move onto the top of the Hound!");
-        }
-         else {
+        } else {
             try {
                 MapVo newMap = foxputPerformer.perform(gameState.getMapVo(), rowIndex, columnIndex, 0);
 
@@ -86,7 +85,7 @@ public class FoxUpRightCommand implements Command {
 
                 gameState.setMapVo(newMap);
                 mapPrinter.printMap(newMap);
-                houndMove.HoundMove(gameState,foxputPerformer,mapPrinter,printWrapper,mapVo);
+                houndMove.Move(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo);
             } catch (PutException e) {
                 System.out.println("Something went wrong while executing put operation");
             }

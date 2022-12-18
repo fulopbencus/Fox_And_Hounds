@@ -86,7 +86,7 @@ public class FoxDownLeftCommand implements Command {
 
                 gameState.setMapVo(newMap);
                 mapPrinter.printMap(newMap);
-                houndMove.HoundMove(gameState,foxputPerformer,mapPrinter,printWrapper,mapVo);
+                houndMove.Move(gameState,foxputPerformer,mapPrinter,printWrapper,mapVo);
             } catch (PutException e) {
                 System.out.println("Something went wrong while executing put operation");
             }

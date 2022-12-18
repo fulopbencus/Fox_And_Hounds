@@ -11,8 +11,6 @@ import fulopbence.nye.progtech.ui.PrintWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.SQLOutput;
-
 /**
  * Puts the fox to up and left by one square.
  */
@@ -87,7 +85,7 @@ public class FoxUpLeftCommand implements Command {
 
                 gameState.setMapVo(newMap);
                 mapPrinter.printMap(newMap);
-                houndMove.HoundMove(gameState,foxputPerformer,mapPrinter,printWrapper,mapVo);
+                houndMove.Move(gameState,foxputPerformer,mapPrinter,printWrapper,mapVo);
             } catch (PutException e) {
                 System.out.println("Something went wrong while executing put operation");
             }
