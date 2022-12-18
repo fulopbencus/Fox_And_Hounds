@@ -4,13 +4,13 @@ import fulopbence.nye.progtech.model.GameState;
 import fulopbence.nye.progtech.model.MapVo;
 import fulopbence.nye.progtech.service.command.Command;
 import fulopbence.nye.progtech.service.command.FoxPutPerformer;
+import fulopbence.nye.progtech.service.command.HoundMove;
 import fulopbence.nye.progtech.service.exception.PutException;
 import fulopbence.nye.progtech.ui.MapPrinter;
 import fulopbence.nye.progtech.ui.PrintWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.SQLOutput;
 
 /**
  * Puts the fox to up and right by one square.
@@ -26,14 +26,16 @@ public class FoxUpRightCommand implements Command {
     private  MapPrinter mapPrinter;
     private  PrintWrapper printWrapper;
     private MapVo mapVo;
+    private HoundMove houndMove;
 
     public FoxUpRightCommand(GameState gameState, FoxPutPerformer
-            foxputPerformer, MapPrinter mapPrinter, PrintWrapper printWrapper, MapVo mapVo) {
+            foxputPerformer, MapPrinter mapPrinter, PrintWrapper printWrapper, MapVo mapVo, HoundMove houndMove) {
         this.gameState = gameState;
         this.foxputPerformer = foxputPerformer;
         this.mapPrinter = mapPrinter;
         this.printWrapper = printWrapper;
         this.mapVo = mapVo;
+        this.houndMove = houndMove;
     }
 
     @Override
@@ -84,6 +86,7 @@ public class FoxUpRightCommand implements Command {
 
                 gameState.setMapVo(newMap);
                 mapPrinter.printMap(newMap);
+                houndMove.HoundMove(gameState,foxputPerformer,mapPrinter,printWrapper,mapVo);
             } catch (PutException e) {
                 System.out.println("Something went wrong while executing put operation");
             }

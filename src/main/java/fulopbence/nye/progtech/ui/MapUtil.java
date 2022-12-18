@@ -82,7 +82,9 @@ public class MapUtil {
         } catch (NullPointerException e) {
             System.out.println("NullPointer");
         }
-            if(rowIndex + 1 >= numberOfRows){ //Checks the bottom situations |_ , __ , _|
+        if(rowIndex == 0){
+            result = false;
+        } else if(rowIndex + 1 >= numberOfRows){ //Checks the bottom situations |_ , __ , _|
                 if(columnIndex - 1 < 0) {
                     if (oldMap[rowIndex - 1][columnIndex + 1] != 0) {
                         result = true;

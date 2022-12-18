@@ -33,7 +33,7 @@ public class GameController {
 
     private boolean isGameInProgress() {
         boolean result = true;
-        if (!mapUtil.isMapCompleted(gameState.getMapVo()) && !gameState.isUserWantsToExit() == mapUtil.isGameLost(gameState, gameState.getMapVo())) {
+        if (!mapUtil.isMapCompleted(gameState.getMapVo()) == !gameState.isUserWantsToExit() == mapUtil.isGameLost(gameState, gameState.getMapVo())) {
             result = false;
         }
         return result;

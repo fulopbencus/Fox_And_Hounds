@@ -10,6 +10,8 @@ import fulopbence.nye.progtech.model.GameState;
 import fulopbence.nye.progtech.model.MapVo;
 import fulopbence.nye.progtech.service.command.Command;
 import fulopbence.nye.progtech.service.command.FoxPutPerformer;
+import fulopbence.nye.progtech.service.command.HoundMove;
+import fulopbence.nye.progtech.service.command.HoundMove;
 import fulopbence.nye.progtech.service.command.InputHandler;
 import fulopbence.nye.progtech.service.command.impl.*;
 import fulopbence.nye.progtech.service.game.GameController;
@@ -44,6 +46,7 @@ public class Main {
         MapVo mapVo = mapReaderFacade.readMap();
 
         FoxPutPerformer foxputPerformer = new FoxPutPerformer();
+        HoundMove houndMove = new HoundMove();
 
         GameState gameState = new GameState(mapVo, false);
 
@@ -56,10 +59,10 @@ public class Main {
         List<Command> commandList = Arrays.asList(
                 new PrintCommand(mapPrinter, gameState),
                 new ExitCommand(gameState),
-                new FoxDownLeftCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo),
-                new FoxDownRightCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo),
-                new FoxUpRightCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo),
-                new FoxUpLeftCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo),
+                new FoxDownLeftCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo, houndMove),
+                new FoxDownRightCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo, houndMove),
+                new FoxUpRightCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo, houndMove),
+                new FoxUpLeftCommand(gameState, foxputPerformer, mapPrinter, printWrapper, mapVo, houndMove),
                 new DefaultCommand(printWrapper)
         );
 

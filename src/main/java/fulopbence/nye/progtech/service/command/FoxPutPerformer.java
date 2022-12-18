@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
  */
 public class FoxPutPerformer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FoxPutPerformer.class);
-
     /**
      * Returns the new map.
      */
