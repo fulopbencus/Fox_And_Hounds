@@ -1,5 +1,6 @@
 package fulopbence.nye.progtech.service.game;
 
+import fulopbence.nye.progtech.database.Query;
 import fulopbence.nye.progtech.model.GameState;
 import fulopbence.nye.progtech.ui.MapUtil;
 
@@ -25,7 +26,7 @@ public class GameController {
      */
 
     public void gameLoop() {
-
+        Query.setUser();
         while (isGameInProgress()) {
             gameStepPerformer.performGameStep();
         }
@@ -33,7 +34,9 @@ public class GameController {
 
     private boolean isGameInProgress() {
         boolean result = true;
-        if (!mapUtil.isMapCompleted(gameState.getMapVo()) == !gameState.isUserWantsToExit() == mapUtil.isGameLost(gameState, gameState.getMapVo())) {
+        if (!mapUtil.isMapCompleted(gameState.getMapVo())
+                == !gameState.isUserWantsToExit()
+                == mapUtil.isGameLost(gameState, gameState.getMapVo())) {
             result = false;
         }
         return result;

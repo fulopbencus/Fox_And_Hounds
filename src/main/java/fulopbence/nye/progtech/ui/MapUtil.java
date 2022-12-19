@@ -3,6 +3,7 @@ package fulopbence.nye.progtech.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import fulopbence.nye.progtech.database.Query;
 import fulopbence.nye.progtech.model.GameState;
 import fulopbence.nye.progtech.model.MapVo;
 
@@ -53,6 +54,8 @@ public class MapUtil {
                 System.out.println("       __---˝˝˝˝˝˝˝˝˝˝---__");
                 System.out.println("       ||  THE FOX WINS! ||");
                 System.out.println("       ˝˝---__________---˝˝");
+                System.out.println("            HIGHSCORES:");
+                Query.selectAll();
             }
         }
 
@@ -62,7 +65,7 @@ public class MapUtil {
     /**
      * Checks if the fox can move to anywhere, and if not, the game is lost.
      */
-    public boolean isGameLost(GameState gameState, MapVo mapVo){
+    public boolean isGameLost(GameState gameState, MapVo mapVo) {
         boolean result = false;
         MapVo map = gameState.getMapVo();
         int numberOfRows = mapVo.getNumberOfRows();
@@ -82,35 +85,37 @@ public class MapUtil {
         } catch (NullPointerException e) {
             System.out.println("NullPointer");
         }
-        if(rowIndex == 0){
+        if (rowIndex == 0) {
             result = false;
-        } else if(rowIndex + 1 >= numberOfRows){ //Checks the bottom situations |_ , __ , _|
-                if(columnIndex - 1 < 0) {
+        } else if (rowIndex + 1 >= numberOfRows) { //Checks the bottom situations |_ , __ , _|
+                if (columnIndex - 1 < 0) {
                     if (oldMap[rowIndex - 1][columnIndex + 1] != 0) {
                         result = true;
                     }
-                }else if(columnIndex + 1 >= numberOfColumns) {
+                } else if (columnIndex + 1 >= numberOfColumns) {
                     if (oldMap[rowIndex - 1][columnIndex - 1] != 0) {
                         result = true;
                     }
-                }else if(oldMap[rowIndex - 1][columnIndex - 1] != 0 && oldMap[rowIndex - 1][columnIndex + 1] != 0){
+                } else if (oldMap[rowIndex - 1][columnIndex - 1] != 0 && oldMap[rowIndex - 1][columnIndex + 1] != 0) {
                     result = true;
                 }
-            }//End of bottom situation check
-            else if(columnIndex + 1 >= numberOfColumns){//Checks the right side situation |->|
-                    if(oldMap[rowIndex + 1][columnIndex - 1] != 0 && oldMap[rowIndex - 1][columnIndex - 1] != 0){
+            } else if (columnIndex + 1 >= numberOfColumns) { //Checks the right side situation |->|
+                    if (oldMap[rowIndex + 1][columnIndex - 1] != 0 && oldMap[rowIndex - 1][columnIndex - 1] != 0) {
                         result = true;
                 }
-            }
-            else if(columnIndex - 1 < 0){//Checks the left side situation |<-|
-                    if(oldMap[rowIndex + 1][columnIndex + 1] != 0 && oldMap[rowIndex - 1][columnIndex + 1] != 0){
+            } else if (columnIndex - 1 < 0) { //Checks the left side situation |<-|
+                    if (oldMap[rowIndex + 1][columnIndex + 1] != 0 && oldMap[rowIndex - 1][columnIndex + 1] != 0) {
                         result = true;
                 }
-            }//Checks the within map bounds situation
-            else if(oldMap[rowIndex + 1][columnIndex + 1] != 0 && oldMap[rowIndex - 1][columnIndex + 1] != 0 && oldMap[rowIndex + 1][columnIndex - 1] != 0 && oldMap[rowIndex - 1][columnIndex - 1] != 0){
+            } else if (oldMap[rowIndex + 1][columnIndex + 1] != 0
+                && oldMap[rowIndex - 1][columnIndex + 1] != 0
+                && oldMap[rowIndex + 1][columnIndex - 1] != 0
+                && oldMap[rowIndex - 1][columnIndex - 1] != 0) {
                 result = true;
             }
-        if(result == true){System.out.println("You have LOST!");}
+        if (result == true) {
+            System.out.println("You have LOST!");
+        }
         return result;
     }
 }
